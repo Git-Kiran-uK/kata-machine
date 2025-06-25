@@ -1,4 +1,4 @@
-import binary_fn from "@code/BinarySearchList"
+import binary_fn from "./BinarySearchList"
 
 test("binary search array", function() {
 
@@ -11,3 +11,18 @@ test("binary search array", function() {
     expect(binary_fn(foo, 0)).toEqual(false);
 });
 
+export default function binarySearch(arr: number[], value: number): boolean{
+    let low:number = 0;
+    let high:number = arr.length - 1;
+    while(low <= high){
+        const median: number = Math.floor((low + high) / 2);
+        if(value === arr[median]){
+            return true
+        } else if(value > arr[median]){
+            low = median + 1;
+        } else {
+            high = median - 1;
+        }
+    }
+    return false
+}
